@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yıldız Organizasyon V3</title>
+    
+    <!-- CSS Kaynakları -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root { --gold: #D4AF37; --dark: #000000; --accent: #1c1c1c; }
+        
+        /* Sayfa yüklenene kadar kaydırmayı engelle */
+        html, body { 
+            background-color: var(--dark); 
+            color: white; 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: hidden; 
+        }
+
+/* Sidebar Tasarımı */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: #050505;
+    border-right: 1px solid var(--gold);
+    padding-top: 80px;
+    z-index: 999;
+}
+.sidebar-link {
+    padding: 15px 25px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 3px solid transparent;
+}
+.sidebar-link:hover, .sidebar-link.active {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+}
+/* İçeriği Sidebar'dan Kurtar */
+.main-content { margin-left: 250px; padding: 20px; }
+
+        /* --- SPLASH SCREEN --- */
+        #splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10001;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .star-logo { 
+            width: 180px; 
+            height: auto; 
+            filter: drop-shadow(0 0 20px var(--gold));
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* --- NAVBAR --- */
+        .navbar { 
+            border-bottom: 1px solid var(--gold); 
+            background: rgba(0,0,0,0.9);
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .navbar-brand { 
+            color: var(--gold) !important; 
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-link { 
+            color: rgba(255,255,255,0.8) !important; 
+            font-weight: 400; 
+            margin: 0 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .nav-link:hover { color: var(--gold) !important; }
+
+        .btn-gold { 
+            background: var(--gold); 
+            color: black !important; 
+            font-weight: 600; 
+            border-radius: 50px;
+            padding: 8px 25px;
+            border: 1px solid var(--gold);
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover { 
+            background: transparent; 
+            color: var(--gold) !important;
+            transform: translateY(-2px);
+        }
+
+        main { min-height: 80vh; }
+    </style>
+</head>
+<body>
+
+    <!-- AÇILIŞ ANİMASYONU -->
+    <div id="splash">
+        <div style="background: linear-gradient(135deg, #F9D423 0%, #D4AF37 100%); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); display: inline-block; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6)); width: 150px; height: 150px; margin-bottom: 30px;"></div>
+    </div>
+
+    <!-- NAVİGASYON -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">⭐ YILDIZ ORGANİZASYON</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="/">ANA SAYFA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hizmetler">HİZMETLER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">YÖNETİCİ GİRİŞİ</a></li>
+                    <li class="nav-item"><a class="btn btn-gold ms-lg-3" href="#iletisim">TEKLİF AL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ANA İÇERİK -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="py-4 text-center border-top border-secondary mt-5">
+        <p class="text-white-50 small m-0">&copy; 2026 Yıldız Organizasyon - Müdürün Odası V3</p>
+    </footer>
+
+    <!-- JS SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash');
+            // Animasyon süresi 2.5 saniye
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.visibility = 'hidden';
+                    // Kaydırma çubuğunu açılıştan sonra aktif et
+                    document.body.style.overflowY = 'auto';
+                }, 800);
+            }, 2500); 
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+{% extends "base_front.html" %}
+{% block content %}
+
+<style>
+    /* =========================================
+       GALERİ - YAŞAYAN RENKLER VE COŞKU
+       ========================================= */
+    
+    /* 1. Zemin: Saf ve Aydınlık */
+    body { background-color: #FFFFFF !important; color: #333 !important; }
+
+    /* 2. Gökkuşağı Hero Alanı */
+    .gallery-hero-vibrant {
+        background: linear-gradient(-45deg, #FF9A9E, #FAD0C4, #A1C4FD, #C2E9FB, #FFD1FF);
+        background-size: 400% 400%;
+        animation: rainbowBG 15s ease infinite;
+        padding: 140px 0 100px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -80px;
+        border-bottom: 5px solid #FF758C;
+    }
+    @keyframes rainbowBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+    .hero-title-joy { font-family: 'Playfair Display', serif; font-size: 4.8rem; font-weight: 900; color: #2C2C2C; text-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+    /* 3. İnteraktif Galeri Izgarası */
+    .gallery-grid-vibrant {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 35px;
+        padding: 60px 0;
+    }
+
+    .gallery-card-vibrant {
+        position: relative;
+        border-radius: 30px;
+        overflow: hidden;
+        height: 400px;
+        background: #F8F9FA;
+        border: 2px solid transparent;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+    }
+
+    /* Görsel Katmanı */
+    .gallery-card-vibrant img { 
+        width: 100%; height: 100%; object-fit: cover; 
+        transition: 0.8s ease; opacity: 1; z-index: 2; position: relative;
+    }
+    .gallery-card-vibrant:hover img { transform: scale(1.1) rotate(2deg); filter: brightness(1.1); }
+
+    /* Resim Yoksa Arkada Patlayan Renkler (Fallback) */
+    .gallery-fallback-fun {
+        position: absolute; inset: 0; display: flex; flex-direction: column; 
+        align-items: center; justify-content: center; z-index: 1; color: #fff;
+    }
+    .gallery-fallback-fun i { font-size: 5rem; margin-bottom: 15px; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+    /* Üzerine Gelince Çıkan Renkli Panel */
+    .gallery-overlay-fun {
+        position: absolute; inset: 0;
+        background: var(--card-gradient);
+        opacity: 0; z-index: 3;
+        transition: 0.5s ease;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 40px; text-align: center;
+    }
+    .gallery-card-vibrant:hover .gallery-overlay-fun { opacity: 0.95; }
+
+    .gallery-overlay-fun h4 { 
+        font-family: 'Playfair Display', serif; color: #fff; font-size: 2.2rem; 
+        font-weight: 900; transform: translateY(30px); transition: 0.5s 0.1s ease;
+    }
+    .gallery-overlay-fun p { 
+        color: rgba(255,255,255,0.9); font-weight: 700; letter-spacing: 3px; 
+        text-transform: uppercase; font-size: 0.8rem; transform: translateY(30px); transition: 0.5s 0.2s ease;
+    }
+    .gallery-card-vibrant:hover .gallery-overlay-fun h4, 
+    .gallery-card-vibrant:hover .gallery-overlay-fun p { transform: translateY(0); }
+
+    /* Kategori Renkleri */
+    .cat-dugun { --card-gradient: linear-gradient(135deg, #FF758C 0%, #FF7EB3 100%); }
+    .cat-kina { --card-gradient: linear-gradient(135deg, #f12711 0%, #f5af19 100%); }
+    .cat-gala { --card-gradient: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+    .cat-parti { --card-gradient: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); }
+    .cat-kurumsal { --card-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+
+</style>
+
+<section class="gallery-hero-vibrant">
+    <div class="container">
+        <span class="fw-bold text-uppercase d-block mb-3" style="letter-spacing: 6px; color: #D81B60;"><i class="bi bi-stars me-2"></i>Mutluluk Arşivi</span>
+        <h1 class="hero-title-joy">Yaşayan Anılar</h1>
+        <p class="fs-5 text-muted mt-3 fw-bold">Her karede bir kahkaha, her fotoğrafta bir hikaye saklı.</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="gallery-grid-vibrant">
+        
+        <div class="gallery-card-vibrant cat-dugun">
+            <div class="gallery-fallback-fun" style="background: #FFB6C1;">
+                <i class="bi bi-heart-fill"></i><span>Aşk Hikayeleri</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_dugun.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Kumsal Düğünü</h4>
+                <p>Romantik & Zarif</p>
+            </div>
+        </div>
+
+        <div class="gallery-card-vibrant cat-kina">
+            <div class="gallery-fallback-fun" style="background: #ff6a00;">
+                <i class="bi bi-music-note-beamed"></i><span>Eğlence Şöleni</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_kina.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Sultan Kınası</h4>
+                <p>Coşkulu & Geleneksel</p>
+            </div>
+        </div>
+
+        <div class="gallery-card-vibrant cat-gala">
+            <div class="gallery-fallback-fun" style="background: #2193b0;">
+                <i class="bi bi-lightbulb-fill"></i><span>Prestijli Adımlar</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_lansman.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Teknoloji Zirvesi</h4>
+                <p>Modern & Dinamik</p>
+            </div>
+        </div>
+
+        <div class="gallery-card-vibrant cat-parti">
+            <div class="gallery-fallback-fun" style="background: #8E2DE2;">
+                <i class="bi bi-balloon-fill"></i><span>Parti Zamanı</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_parti.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Konsept Parti</h4>
+                <p>Renkli & Çılgın</p>
+            </div>
+        </div>
+
+        <div class="gallery-card-vibrant cat-kurumsal">
+            <div class="gallery-fallback-fun" style="background: #11998e;">
+                <i class="bi bi-cup-straw"></i><span>Zarif Davetler</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_kokteyl.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Yaz Kokteyli</h4>
+                <p>Ferah & Sosyal</p>
+            </div>
+        </div>
+
+        <div class="gallery-card-vibrant cat-dugun" style="--card-gradient: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);">
+            <div class="gallery-fallback-fun" style="background: #f9d423;">
+                <i class="bi bi-award-fill"></i><span>Ödül Gecesi</span>
+            </div>
+            <img src="{{ url_for('static', filename='galeri_gala.jpg') }}" onerror="this.style.opacity='0'">
+            <div class="gallery-overlay-fun">
+                <h4>Altın Ödüller</h4>
+                <p>Görkemli & VIP</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "base_front.html" %}
+{% block content %}
+
+<style>
+    /* =========================================
+       HİZMETLER - CANLI, RENKLİ VE ENERJİK
+       ========================================= */
+    
+    /* 1. Zemin: Ferah, Neşeli ve Aydınlık */
+    body { background-color: #FFFFFF !important; color: #333 !important; }
+
+    /* 2. Coşkulu Sayfa Başlığı (Hero) */
+    .service-hero-joy {
+        background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 50%, #FFD1FF 100%);
+        padding: 140px 0 100px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -80px;
+        border-bottom: 3px solid #FF758C;
+    }
+    
+    /* Uçuşan Balon/Işık Efektleri (Kodla Çizildi) */
+    .service-hero-joy::before {
+        content: ''; position: absolute; width: 400px; height: 400px; 
+        background: rgba(255, 255, 255, 0.4); border-radius: 50%; 
+        filter: blur(80px); top: -100px; left: -100px; animation: pulse 6s infinite alternate;
+    }
+    @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
+
+    .hero-title-fun { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 900; color: #2C2C2C; line-height: 1.1; }
+    .hero-subtitle-fun { font-family: 'Inter', sans-serif; font-size: 1.3rem; color: #555; font-weight: 600; margin-top: 20px; }
+
+    /* 3. Hizmet Kartları (Canlı Renkler ve Görseller) */
+    .service-card-vibrant {
+        background: #fff;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        position: relative;
+    }
+    .service-card-vibrant:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(255, 117, 140, 0.2); border-color: #FF758C; }
+
+    /* Görsel Alanı */
+    .service-img-vibrant { width: 100%; height: 280px; position: relative; overflow: hidden; background: #eee; }
+    .service-img-vibrant img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+    .service-card-vibrant:hover .service-img-vibrant img { transform: scale(1.1); }
+    
+    /* Resim Yoksa Çıkacak Neşeli İkonlar */
+    .img-placeholder-fun { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .img-placeholder-fun i { font-size: 4rem; margin-bottom: 10px; }
+
+    /* İçerik Alanı */
+    .service-body-fun { padding: 40px 30px; text-align: center; }
+    .service-body-fun h3 { font-family: 'Playfair Display', serif; font-weight: 900; color: #2C2C2C; font-size: 2rem; margin-bottom: 15px; }
+    .service-body-fun p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 30px; }
+
+    /* Renkli Butonlar */
+    .btn-action-fun {
+        display: inline-block; padding: 15px 40px; border-radius: 50px; text-decoration: none; 
+        font-weight: 800; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+    }
+    .btn-pink { background: linear-gradient(135deg, #FF758C 0%, #FF7EB3 100%); color: #fff !important; }
+    .btn-pink:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(255, 117, 140, 0.4); }
+
+    .btn-blue { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); color: #fff !important; }
+    .btn-blue:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(33, 147, 176, 0.4); }
+
+    .btn-orange { background: linear-gradient(135deg, #f12711 0%, #f5af19 100%); color: #fff !important; }
+    .btn-orange:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(241, 39, 17, 0.4); }
+
+</style>
+
+<section class="service-hero-joy">
+    <div class="container">
+        <span class="fw-bold text-uppercase d-block mb-3" style="letter-spacing: 5px; color: #d81b60;"><i class="bi bi-balloon-fill me-2"></i>Coşku Dolu Hizmetler</span>
+        <h1 class="hero-title-fun">Mutluluğun Her Halini <br>Beraber Kutlayalım!</h1>
+        <p class="hero-subtitle-fun">Hayallerinizdeki o canlı, neşeli ve renkli anları gerçeğe dönüştürüyoruz.</p>
+    </div>
+</section>
+
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="row g-5">
+            
+            <div class="col-lg-4">
+                <div class="service-card-vibrant">
+                    <div class="service-img-vibrant" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);">
+                        <div class="img-placeholder-fun"><i class="bi bi-heart-fill"></i><span>Aşk Dolu Anlar</span></div>
+                        <img src="{{ url_for('static', filename='dugun.jpg') }}" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="service-body-fun">
+                        <h3>Düğün & Nişan</h3>
+                        <p>Bembeyaz zarafetin renkli çiçeklerle dans ettiği, hayatınızın en mutlu "Evet"i için her detayı neşeyle planlıyoruz.</p>
+                        <a href="/iletisim" class="btn-action-fun btn-pink">İncele</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card-vibrant">
+                    <div class="service-img-vibrant" style="background: linear-gradient(45deg, #ee0979, #ff6a00);">
+                        <div class="img-placeholder-fun"><i class="bi bi-music-note-beamed"></i><span>Eğlence Zamanı</span></div>
+                        <img src="{{ url_for('static', filename='kina.jpg') }}" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="service-body-fun">
+                        <h3>Kına Gecesi</h3>
+                        <p>Zılgıtların, kahkahaların ve teflerin havada uçuştuğu; en renkli ve enerjik kına konseptleriyle sabaha kadar dans!</p>
+                        <a href="/iletisim" class="btn-action-fun btn-orange">Eğlenceye Katıl</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="service-card-vibrant">
+                    <div class="service-img-vibrant" style="background: linear-gradient(45deg, #2193b0, #6dd5ed);">
+                        <div class="img-placeholder-fun"><i class="bi bi-lightbulb-fill"></i><span>Prestijli Adımlar</span></div>
+                        <img src="{{ url_for('static', filename='lansman.jpg') }}" onerror="this.style.opacity='0'">
+                    </div>
+                    <div class="service-body-fun">
+                        <h3>Kurumsal & Lansman</h3>
+                        <p>Markanızın vizyonuna yakışır, dinamik ve etkileyici etkinliklerle iş dünyasına renkli bir imza atın.</p>
+                        <a href="/iletisim" class="btn-action-fun btn-blue">Detayları Gör</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background-color: #FFF0F5;">
+    <div class="container text-center py-4">
+        <h2 class="fw-bold mb-4" style="font-family: 'Playfair Display', serif; color: #d81b60;">Sizin Heyecanınız, Bizim Motivasyonumuz!</h2>
+        <p class="text-muted fs-5 mb-5">Her organizasyonda yepyeni bir hikaye yazıyoruz. Sizin hikayenizde hangi renkler olsun?</p>
+        <a href="/iletisim" class="btn-action-fun btn-pink" style="font-size: 1.2rem;">Hemen İletişime Geçelim <i class="bi bi-chat-heart ms-2"></i></a>
+    </div>
+</section>
+
+{% endblock %}

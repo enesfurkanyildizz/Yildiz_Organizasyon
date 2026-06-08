@@ -1,0 +1,198 @@
+{% extends "base_front.html" %}
+{% block content %}
+
+<style>
+    /* =========================================
+       KURUMSAL - CANLI, ENERJİK VE COŞKULU KONSEPT
+       ========================================= */
+    
+    /* 1. Zemin Sadece Beyaz Değil, Çok Hafif Tatlı Bir Pudra Rengi */
+    body { background-color: #FFF5F7 !important; color: #444 !important; }
+
+    /* 2. Cıvıl Cıvıl Hareketli Hero Alanı */
+    .hero-carnival {
+        background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fad0c4, #ffd1ff);
+        background-size: 300% 300%;
+        animation: heroColors 10s ease infinite;
+        padding: 150px 0 110px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -80px;
+        border-bottom: 4px solid #ff758c; /* Tatlı bir sınır çizgisi */
+    }
+    @keyframes heroColors { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+    /* Arkada Uçuşan Tatlı Işık Küreleri (Canlılık Katar) */
+    .hero-carnival::before, .hero-carnival::after {
+        content: ''; position: absolute; border-radius: 50%; filter: blur(50px); z-index: 0; opacity: 0.7;
+    }
+    .hero-carnival::before { width: 400px; height: 400px; background: #ff758c; top: -100px; left: -50px; animation: float1 8s infinite alternate ease-in-out; }
+    .hero-carnival::after { width: 500px; height: 500px; background: #FFDAB9; bottom: -150px; right: -50px; animation: float2 10s infinite alternate ease-in-out; }
+    @keyframes float1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(80px, 80px) scale(1.1); } }
+    @keyframes float2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-80px, -80px) scale(1.2); } }
+
+    /* Eski Sevilen ve Coşkulu Yazılar */
+    .carnival-tag {
+        font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 800; letter-spacing: 4px; 
+        color: #d81b60; text-transform: uppercase; position: relative; z-index: 2; display: inline-block;
+        background: rgba(255, 255, 255, 0.4); padding: 8px 20px; border-radius: 50px; margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(216, 27, 96, 0.1);
+    }
+    .carnival-title { 
+        font-family: 'Playfair Display', serif; font-size: 4.8rem; font-weight: 900; 
+        color: #2C2C2C; position: relative; z-index: 2; line-height: 1.1; text-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .carnival-highlight { 
+        background: linear-gradient(to right, #d81b60, #ff758c);
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+        font-style: italic; font-weight: 900;
+    }
+    .carnival-subtitle { 
+        font-family: 'Inter', sans-serif; font-size: 1.25rem; color: #555; font-weight: 600;
+        max-width: 700px; margin: 25px auto 0 auto; position: relative; z-index: 2; line-height: 1.8; 
+    }
+
+    /* 3. Hikaye Kartları (Tamamen Renkli ve Eğlenceli) */
+    .story-card-fun {
+        background: #FFFFFF;
+        border-radius: 25px; 
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(255, 117, 140, 0.1);
+        transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 2px solid transparent;
+        height: 100%;
+        position: relative;
+    }
+    .story-card-fun:hover { 
+        box-shadow: 0 25px 50px rgba(255, 117, 140, 0.3); 
+        border-color: #ff758c; 
+        transform: translateY(-15px);
+    }
+
+    /* GÖRSEL ALANI (Sen resim koyana kadar patlayan canlı renkler durur) */
+    .story-img-box { width: 100%; height: 300px; position: relative; overflow: hidden; }
+    .story-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; position: relative; z-index: 2; }
+    .story-card-fun:hover .story-img-box img { transform: scale(1.1) rotate(2deg); }
+    
+    .story-img-fallback { 
+        position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+        color: #fff; z-index: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .story-img-fallback i { font-size: 3.5rem; margin-bottom: 10px; animation: heartbeat 1.5s infinite; }
+    @keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.2); } 30% { transform: scale(1); } 45% { transform: scale(1.2); } 60% { transform: scale(1); } }
+    .story-img-fallback span { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px;}
+
+    /* Kutu İçerikleri */
+    .story-content { padding: 35px 25px; text-align: center; }
+    .story-content h3 { font-family: 'Playfair Display', serif; font-weight: 900; color: #2C2C2C; font-size: 1.8rem; margin-bottom: 15px; transition: 0.3s; }
+    .story-card-fun:hover .story-content h3 { color: #d81b60; }
+    .story-content p { color: #666; font-size: 1rem; line-height: 1.7; font-weight: 500; margin-bottom: 0; }
+
+    /* 4. Canlı İstatistikler */
+    .fun-stat-box { 
+        background: #fff; padding: 40px 20px; border-radius: 25px; 
+        box-shadow: 0 10px 30px rgba(255, 117, 140, 0.08); transition: 0.4s; border: 2px solid #FFF0F5;
+    }
+    .fun-stat-box:hover { border-color: #ff7eb3; transform: translateY(-10px); background: #FFF0F5;}
+    
+    .fun-stat-box i { font-size: 3.5rem; margin-bottom: 15px; display: inline-block; }
+    .color-icon-1 { color: #ff4b2b; }
+    .color-icon-2 { color: #00c6ff; }
+    .color-icon-3 { color: #f9d423; }
+
+    .fun-stat-box h4 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3rem; color: #2C2C2C; margin-bottom: 5px; }
+    .fun-stat-box span { color: #d81b60; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+
+</style>
+
+<section class="hero-carnival">
+    <div class="container">
+        <span class="carnival-tag"><i class="bi bi-balloon-heart-fill me-2"></i>Sizin Hikayeniz, Bizim Sahnemiz</span>
+        <h1 class="carnival-title mb-3">En Mutlu Gününüzü <br><span class="carnival-highlight">Birlikte Tasarlayalım.</span></h1>
+        <p class="carnival-subtitle">Kına gecenizin coşkusundan, düğününüzün zarafetine kadar hayatınızın en özel anlarını sevgiyle, neşeyle ve bitmek bilmeyen bir enerjiyle hayata geçiriyoruz!</p>
+    </div>
+</section>
+
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="text-center mb-5 pb-4">
+            <h2 class="fw-bold" style="font-family: 'Playfair Display', serif; font-size: 3.2rem; color: #d81b60;">Hayallerinize Dokunuyoruz</h2>
+            <div style="width: 80px; height: 5px; background: linear-gradient(to right, #ff9a9e, #fecfef); margin: 20px auto; border-radius: 50px;"></div>
+            <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1.1rem; font-weight: 500;">"İşte benim gecem böyle olmalı!" diyeceğiniz, misafirlerinizin unutamayacağı coşkulu ve rengarenk konseptler.</p>
+        </div>
+        
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="story-card-fun">
+                    <div class="story-img-box" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                        <div class="story-img-fallback"><i class="bi bi-camera-fill"></i><span>Düğün Görseli</span></div>
+                        <img src="{{ url_for('static', filename='dugun.jpg') }}" onerror="this.style.opacity='0'" alt="Masal Gibi Düğünler">
+                    </div>
+                    <div class="story-content">
+                        <h3>Masal Gibi Düğünler</h3>
+                        <p>Bembeyaz çiçekler, harika müzikler ve sevdiklerinizle omuz omuza kutlayacağınız, hayatınızın en neşeli "Evet!" anı için her şey hazır.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="story-card-fun">
+                    <div class="story-img-box" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <div class="story-img-fallback"><i class="bi bi-music-note-beamed"></i><span>Kına Görseli</span></div>
+                        <img src="{{ url_for('static', filename='kina.jpg') }}" onerror="this.style.opacity='0'" alt="Coşkulu Kına Geceleri">
+                    </div>
+                    <div class="story-content">
+                        <h3>Coşkulu Kına Geceleri</h3>
+                        <p>Zılgıtların, kahkahaların ve teflerin havada uçuştuğu; kız kıza sabaha kadar kurtlarınızı dökeceğiniz en renkli ve enerjik kına konseptleri!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="story-card-fun">
+                    <div class="story-img-box" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <div class="story-img-fallback"><i class="bi bi-gem"></i><span>Nişan Görseli</span></div>
+                        <img src="{{ url_for('static', filename='nisan.jpg') }}" onerror="this.style.opacity='0'" alt="Tatlı Nişan Törenleri">
+                    </div>
+                    <div class="story-content">
+                        <h3>Tatlı Nişan Törenleri</h3>
+                        <p>Kurdeleler kesilirken gözyaşlarının kahkahalara karıştığı, ilk adımı atarken ailenizle yaşayacağınız en samimi ve şık kutlamalar.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5 mb-5">
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="fun-stat-box">
+                    <i class="bi bi-heart-pulse-fill color-icon-1"></i>
+                    <h4>850+</h4>
+                    <span>Aşık Çiftimiz</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="fun-stat-box">
+                    <i class="bi bi-boombox-fill color-icon-2"></i>
+                    <h4>1200+</h4>
+                    <span>Saat Dans & Müzik</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="fun-stat-box">
+                    <i class="bi bi-emoji-laughing-fill color-icon-3"></i>
+                    <h4>Milyonlarca</h4>
+                    <span>Gülümseme & Anı</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

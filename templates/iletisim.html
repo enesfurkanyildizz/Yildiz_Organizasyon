@@ -1,0 +1,112 @@
+{% extends "base_front.html" %}
+{% block content %}
+
+<style>
+    /* =========================================
+       İLETİŞİM - BAHAR FERAHLIĞI VE CANLI RENKLER
+       ========================================= */
+    body { background-color: #FFFFFF !important; }
+
+    /* 1. Neşeli İletişim Hero */
+    .contact-hero-joy {
+        background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%);
+        padding: 140px 0 100px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -80px;
+        border-bottom: 3px solid #FFB6C1;
+    }
+    
+    .contact-hero-joy::after {
+        content: '♥'; position: absolute; font-size: 15rem; color: rgba(255, 182, 193, 0.2);
+        right: -50px; bottom: -50px; transform: rotate(-20deg); font-family: serif;
+    }
+
+    .hero-title-love { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; color: #2C2C2C; }
+
+    /* 2. Renkli İletişim Kartları */
+    .info-card-vibrant {
+        background: #fff; border-radius: 25px; padding: 40px; text-align: center;
+        box-shadow: 0 15px 40px rgba(255, 182, 193, 0.15);
+        border: 2px solid transparent; transition: 0.4s; height: 100%;
+    }
+    .info-card-vibrant:hover { transform: translateY(-10px); border-color: #FFB6C1; box-shadow: 0 20px 50px rgba(255, 182, 193, 0.3); }
+
+    .icon-box-fun {
+        width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 25px auto; font-size: 2.2rem; transition: 0.5s;
+    }
+    .bg-pink { background: #FFB6C1; color: #fff; }
+    .bg-blue { background: #A1C4FD; color: #fff; }
+    .bg-yellow { background: #F9D423; color: #fff; }
+
+    /* 3. Canlı Form Tasarımı */
+    .form-vibrant {
+        background: #fff; border: 2px solid #F0F0F0; border-radius: 15px; padding: 15px 20px;
+        transition: 0.3s; font-weight: 600;
+    }
+    .form-vibrant:focus {
+        border-color: #FF758C; box-shadow: 0 0 15px rgba(255, 117, 140, 0.2); outline: none;
+    }
+
+    .btn-send-joy {
+        background: linear-gradient(135deg, #FF758C 0%, #FF7EB3 100%);
+        color: #fff !important; font-weight: 800; border-radius: 50px; padding: 18px;
+        width: 100%; border: none; letter-spacing: 2px; text-transform: uppercase;
+        box-shadow: 0 10px 20px rgba(255, 117, 140, 0.3); transition: 0.4s;
+    }
+    .btn-send-joy:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(255, 117, 140, 0.5); }
+</style>
+
+<section class="contact-hero-joy">
+    <div class="container">
+        <h1 class="hero-title-love">Bir Merhaba Kadar Yakınız</h1>
+        <p class="fs-5 text-muted fw-bold">Hayalinizdeki o günü beraber planlamak için sizi bekliyoruz!</p>
+    </div>
+</section>
+
+<div class="container py-5 my-5">
+    <div class="row g-4 mb-5 text-center">
+        <div class="col-md-4">
+            <div class="info-card-vibrant">
+                <div class="icon-box-fun bg-pink"><i class="bi bi-geo-alt-fill"></i></div>
+                <h4 class="fw-bold">Bize Uğrayın</h4>
+                <p class="text-muted">Döşemealtı, Antalya <br> Yıldız Operasyon Merkezi</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card-vibrant">
+                <div class="icon-box-fun bg-blue"><i class="bi bi-envelope-heart-fill"></i></div>
+                <h4 class="fw-bold">Yazın</h4>
+                <p class="text-muted">hello@yildiz.com <br> destek@yildiz.com</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card-vibrant">
+                <div class="icon-box-fun bg-yellow"><i class="bi bi-whatsapp"></i></div>
+                <h4 class="fw-bold">Arayın</h4>
+                <p class="text-muted">0 (242) 000 00 00 <br> 7/24 Kesintisiz Hat</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="p-5 rounded-5" style="background: #FFF5F7; border: 2px solid #FFE4E1;">
+                <h2 class="text-center mb-5 fw-bold" style="font-family: 'Playfair Display', serif; color: #d81b60;">Hemen Teklif Alın</h2>
+                <form action="/send_message" method="POST">
+                    <div class="row g-4">
+                        <div class="col-md-6"><input type="text" class="form-control form-vibrant" placeholder="ADINIZ SOYADINIZ"></div>
+                        <div class="col-md-6"><input type="email" class="form-control form-vibrant" placeholder="E-POSTA ADRESİNİZ"></div>
+                        <div class="col-12"><input type="text" class="form-control form-vibrant" placeholder="ETKİNLİK TÜRÜ (DÜĞÜN, KINA...)"></div>
+                        <div class="col-12"><textarea class="form-control form-vibrant" rows="5" placeholder="HAYALİNİZDEKİ DETAYLAR..."></textarea></div>
+                        <div class="col-12"><button type="submit" class="btn-send-joy">MESAJI GÖNDER ♥</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
