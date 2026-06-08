@@ -15,7 +15,7 @@
 ---
 
 ## 📌 Yönetici Özeti (Executive Summary)
-Yıldız Organizasyon V2; karmaşık etkinlik operasyonlarını, personel yönetimini ve müşteri verilerini tek bir merkezden kontrol etmek amacıyla geliştirilmiş **dinamik bir bilişim sistemi projesidir.** 
+Yıldız Organizasyon ; karmaşık etkinlik operasyonlarını, personel yönetimini ve müşteri verilerini tek bir merkezden kontrol etmek amacıyla geliştirilmiş **dinamik bir bilişim sistemi projesidir.** 
 
 Bu proje sadece bir web arayüzü değil; arka planda güçlü bir veritabanı mimarisi barındıran, veri bütünlüğünü sağlayan ve yöneticilere kusursuz bir operasyon paneli sunan tam teşekküllü bir **Yönetim Bilişim Sistemi (MIS)** çözümüdür. Sıradanlığı reddeden vizyonumuzla, hem kod kalitesini hem de kullanıcı deneyimini en üst düzeyde tutuyoruz.
 
