@@ -72,10 +72,10 @@ Projeyi yerel sunucunuzda (localhost) test etmek için terminal/CMD üzerinden a
 
 ```bash
 # 1. Sistemi Bilgisayarınıza Klonlayın
-git clone https://github.com/enesfurkanyildiz/Yildiz_Organizasyon_V2.git
+git clone https://github.com/enesfurkanyildiz/Yildiz_Organizasyon.git
 
 # 2. Proje Dizinine Geçiş Yapın
-cd Yildiz_Organizasyon_V2
+cd Yildiz_Organizasyon
 
 # 3. Gerekli Python Modüllerini Yükleyin
 pip install flask
